@@ -2,7 +2,8 @@
 FROM jjanzic/docker-python3-opencv
 FROM tensorflow/tensorflow:latest-py3-jupyter
 RUN mkdir /home/models
-RUN pip install Pillow opencv-python contextlib2 Cython pycocotools
+RUN pip install Pillow opencv-python contextlib2 Cython
+RUN pip install pycocotools
 RUN apt-get update
 RUN apt-get install -y git libsm6 libxext6 libxrender-dev curl unzip x264
 
@@ -13,6 +14,10 @@ RUN mkdir /opt/protoc
 RUN unzip protoc.zip -d /opt/protoc
 RUN rm protoc.zip
 ENV PATH="/opt/protoc/bin:${PATH}"
+ENV PYTHONPATH="${PYTHONPATH}:/home/models"
+ENV PYTHONPATH="${PYTHONPATH}:/home/models/research"
+ENV PYTHONPATH="${PYTHONPATH}:/home/models/research/slim"
 RUN (cd /home/models/research && protoc --python_out=. object_detection/protos/*)
 
 EXPOSE 8888
+EXPOSE 6006
