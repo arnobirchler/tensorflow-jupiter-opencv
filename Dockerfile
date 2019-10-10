@@ -2,9 +2,9 @@
 FROM jjanzic/docker-python3-opencv
 FROM tensorflow/tensorflow:latest-py3-jupyter
 RUN mkdir /home/models
-RUN pip install Pillow opencv-python 
+RUN pip install Pillow opencv-python contextlib2 Cython pycocotools
 RUN apt-get update
-RUN apt-get install -y git libsm6 libxext6 libxrender-dev curl unzip
+RUN apt-get install -y git libsm6 libxext6 libxrender-dev curl unzip x264
 
 COPY models /home/models
 
