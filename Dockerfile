@@ -15,11 +15,6 @@ ADD https://github.com/samjabrahams/tensorflow-on-raspberry-pi/releases/download
 RUN pip3 install /tensorflow-1.0.0-cp34-cp34m-linux_armv7l.whl && rm /tensorflow-1.0.0-cp34-cp34m-linux_armv7l.whl
 
 # OpenCV
-ENV OPENCV_VERSION="3.2.0"
-ENV OPENCV_DIR="/opt/opencv/"
-
-ADD https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.tar.gz ${OPENCV_DIR}
-
 RUN cd ${OPENCV_DIR} && \
     tar -xzf ${OPENCV_VERSION}.tar.gz && \
     rm ${OPENCV_VERSION}.tar.gz && \
